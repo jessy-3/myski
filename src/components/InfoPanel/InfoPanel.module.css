@@ -50,21 +50,22 @@
     display: flex;
     flex-direction: row;
   }
-
-  .panel_item_form_input{
-    font-size: 1rem;
-    min-width: 5rem;
-    min-height: 2rem;
-    position: relative;
-    background-color: rgb(98, 187, 243);
-  }
-
   .panel_item_btn button {
     font-size: 1rem;
     min-width: 5rem;
     height: 2rem;
+    border-radius: 5px;
     position: relative;
-    background-color: rgb(98, 187, 243);
+    background-color: rgb(91,192,222);
+  }
+  .panel_item_form_input{
+    font-size: 1rem;
+    min-width: 5rem;
+    min-height: 2rem;
+    margin-right: 10px;
+    border-radius: 5px;
+    position: relative;
+    background-color: rgb(91,192,222);
   }
 
   /* @media (max-width: 900px) {

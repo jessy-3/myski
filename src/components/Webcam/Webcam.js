@@ -1,34 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Webcam from "react-webcam";
 import styles from './Webcam.module.css'
 
-
-const WebcamComponent = () => <Webcam />;
+// const WebcamComponent = () => <Webcam />;
 
 const videoConstraints = {
     width: 220,
-    height: 200,
+    height: 165,
     facingMode: "user"
 };
 
 export const WebcamCapture = (props) => {
 
-    const [image,setImage]=useState(props?.imgsrc ? props?.imgsrc : "");
+    const [image,setImage]=useState(props?.imgsrc);
     const webcamRef = React.useRef(null);
-    const [oldimage, setOldImage]=useState(props?.imgsrc ? props?.imgsrc : "");
     
+    useEffect(() => {
+        if (props?.imgsrc) {
+            setImage(props?.imgsrc);
+        }
+    }, [props?.imgsrc])
+
     const capture = React.useCallback(
         () => {
         const imageSrc = webcamRef.current.getScreenshot();
         setImage(imageSrc);
-        setOldImage(imageSrc);
         props.setimgsrc(imageSrc);
         });
 
-    console.log(props )
-    console.log("props ", props?.imgsrc)
-    console.log("old ", oldimage)
-    console.log("image n:", image)
     return (
         <div className={styles.webcam_container}>
             <div className={styles.webcam_img}>
@@ -36,12 +35,12 @@ export const WebcamCapture = (props) => {
                 {image === '' ? 
                     <Webcam
                         audio={false}
-                        height={200}
+                        height={165}
                         ref={webcamRef}
                         screenshotFormat="image/jpeg"
                         width={220}
                         videoConstraints={videoConstraints}/> : 
-                    <img id='imgsrc' height={200} src={image} />
+                    <img id='imgsrc' height={165} src={image} alt='' />
                 }
             </div>
             <div>
@@ -63,13 +62,15 @@ export const WebcamCapture = (props) => {
                             className={styles.webcam_btn}>
                             Capture
                         </button>
-                        <button onClick={(e) => {
-                                e.preventDefault();
-                                setImage(oldimage);
-                            }}
-                            className={styles.webcam_btn}>
-                            Cancel
-                        </button>
+                        {props?.imgsrc ?
+                            <button onClick={(e) => {
+                                    e.preventDefault();
+                                    setImage(props?.imgsrc);
+                                }}
+                                className={styles.webcam_btn}>
+                                No Change
+                            </button> : "" 
+                        }                            
                     </div>
                 }
             </div>

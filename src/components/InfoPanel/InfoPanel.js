@@ -11,14 +11,13 @@ export function InfoPanel(props) {
     const [imgsrc,setImgsrc]=useState(props?.resort ? props?.resort?.imgsrc : "");
     const [errors,setErrors]=useState({});
 
-    console.log("Render Infopanel", props?.action); 
-
     useEffect(() => {
         if (props?.resort) {
             setName(props.resort?.name);
             setLocation(props.resort?.location);
             setNum_SkiRuns(props.resort?.num_skiruns);
             setImgsrc(props.resort?.imgsrc);
+            setErrors({});
         }
     }, [props?.resort])
 
@@ -92,7 +91,6 @@ export function InfoPanel(props) {
                 num_skiruns: num_skiruns,
                 imgsrc: imgsrc  
             })
-            console.log("Creating ", props.resort)
             props.setaction("Created");
         }
         else if (props.action === "Edit") {
@@ -103,7 +101,6 @@ export function InfoPanel(props) {
                 num_skiruns: num_skiruns,
                 imgsrc: imgsrc
             })
-            console.log("Editing ", props.resort)
             props.setaction("Edited");
         }
         else {
@@ -116,7 +113,6 @@ export function InfoPanel(props) {
     
 return (
     <aside className={styles.panel} >
-        { props?.action }
         { (props?.action === "Create" || props?.action === "Edit") ? 
         <div>
             <h3 className={styles.heading}>Resort info</h3>
@@ -137,12 +133,22 @@ return (
                     <WebcamCapture imgsrc={imgsrc} setimgsrc={setImgsrc} />
                 
                     <input className={styles.panel_item_form_input} type="submit" value={props.action === "Create" ? "Create" : "Update"} />
+                    <button className={styles.panel_item_form_input} onClick={() =>{
+                        setName("");
+                        setLocation("");
+                        setNum_SkiRuns(1);
+                        setImgsrc(""); 
+                        setErrors({});
+                        props.setaction("Read")}}>
+                        Cancel
+                    </button> 
+                 
                 </form> 
             </div>
         </div> : 
         <div className={styles.panel_item_btn}>
             <button onClick={() =>{props.setaction("Create")}}>
-                Add New
+                Add New Resort
             </button> 
         </div> }
     </aside>

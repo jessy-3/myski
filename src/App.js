@@ -29,12 +29,10 @@ function App() {
         // Retrieve max resort id to assign a unique auto increased id number.
         newresort.id = resorts.reduce((a,b,)=> (parseInt(a.id) > parseInt(b.id) ? parseInt(a.id) : parseInt(b.id))) + 1;
         resorts.push(newresort);
-        console.log("Created ", newresort);
         setAction("Read");
         break;
       case 'Edit':
-        index = resorts.indexOf(resorts.filter((x) => x===resort)[0]);
-        console.log("editing ", resort)
+        // index = resorts.indexOf(resorts.filter((x) => x===resort)[0]);
         break;
       case 'Edited':
         index = resorts.indexOf(resorts.filter((x) => x['id']===resort.id)[0]);
@@ -43,13 +41,11 @@ function App() {
         resorts[index]['num_skiruns'] = parseInt(resort.num_skiruns);
         if (resort.imgsrc)
           resorts[index]['imgsrc'] = resort.imgsrc;
-        console.log("edited ", resorts[index])        
         setAction("Read");
         break;
       case 'Delete':
         index = resorts.indexOf(resorts.filter((x) => x===resort)[0]);
         delete resorts[index];
-        console.log("after delete ", resorts);
         setAction("Read");
         break;
       default:

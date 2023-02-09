@@ -9,16 +9,18 @@ margin:0 auto;
 }
 .webcam_container .webcam_btn
 {
-margin-top: 20px;
+margin-top: 10px;
 margin-bottom: 20px;
 margin-right: 20px;
+border-radius: 5px;
 font-size: 1rem;
 min-width: 5rem;
 min-height: 2rem;
 /* position: relative; */
-background-color: rgb(98, 187, 243);
+background-color: rgb(92,184,92);
 }
 .webcam_img {
+    margin-top: 10px;
     width: 220px;
-    height: 200px;
+    height: 165px;
 }
