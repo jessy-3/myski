@@ -27,7 +27,10 @@ function App() {
       case 'Created':
         newresort = resort;
         // Retrieve max resort id to assign a unique auto increased id number.
-        newresort.id = resorts.reduce((a,b,)=> (parseInt(a.id) > parseInt(b.id) ? parseInt(a.id) : parseInt(b.id))) + 1;
+        if (resorts.length) {
+          newresort.id = Math.max(...resorts.map(o => o.id)) + 1;
+        }
+        else newresort.id = 1;
         resorts.push(newresort);
         setAction("Read");
         break;
@@ -45,7 +48,15 @@ function App() {
         break;
       case 'Delete':
         index = resorts.indexOf(resorts.filter((x) => x===resort)[0]);
-        delete resorts[index];
+        resorts.splice(index,1);
+        newresort = {
+          id: 0, 
+          name: '', 
+          location: '', 
+          num_skiruns: 1,
+          imgsrc: ''
+        };
+        setResort(newresort);
         setAction("Read");
         break;
       default:
