@@ -1,0 +1,18 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(98, 187, 243);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    height: 58px;
+    padding: 12px 26px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    color: aliceblue;
+    z-index: 1100;
+  }
+  

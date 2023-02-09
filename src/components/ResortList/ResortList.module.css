@@ -1,0 +1,25 @@
+.resortList {
+  margin-right: 30vw;
+  margin-top: 58px;
+  margin-left: 20px;
+  min-width: 700px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border:solid;
+  border-width: 2px;
+  border-color: paleturquoise;
+  padding: 10px;
+  /* This is the calculation for the row height.   */
+  box-sizing: border-box;
+}
+
+.resortList > div {
+  margin: 10px;
+  border:solid;
+  border-width: 2px;
+  border-color: paleturquoise;
+  position: relative;
+  padding: 10px;
+  text-align: left;
+}

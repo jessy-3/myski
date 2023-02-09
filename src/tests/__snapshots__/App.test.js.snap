@@ -1,0 +1,399 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component it renders a correct snapshot 1`] = `
+Array [
+  <header
+    className="header"
+  >
+    Popular Ski Resorts
+  </header>,
+  <main
+    className="resortList"
+    data-testid="resort-list"
+  >
+    <div
+      data-testid="item-container"
+    >
+      <div
+        className="resortItem"
+      >
+        <div
+          className="resort_list_item_title"
+        >
+          <h3>
+            Ski Resort 1
+          </h3>
+        </div>
+        <hr />
+        <div
+          className="resort_list_item_content"
+        >
+          <div
+            className="resort_list_item_img_wrap"
+          >
+            <img
+              alt="Ski Resort 1"
+              src="./images/resort1.jpg"
+              title="Ski Resort 1"
+              width="100%"
+            />
+          </div>
+          <div
+            className="resort_list_item_text"
+          >
+            <table
+              className="infor_table"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    Name: 
+                    Ski Resort 1
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Location: 
+                    Location 1
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Number of ski runs: 
+                    11
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="resort_list_item_btn"
+        >
+          <button
+            data-testid="edit"
+            onClick={[Function]}
+          >
+            Edit
+          </button>
+          <button
+            data-testid="delete"
+            onClick={[Function]}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      data-testid="item-container"
+    >
+      <div
+        className="resortItem"
+      >
+        <div
+          className="resort_list_item_title"
+        >
+          <h3>
+            Ski Resort 22
+          </h3>
+        </div>
+        <hr />
+        <div
+          className="resort_list_item_content"
+        >
+          <div
+            className="resort_list_item_img_wrap"
+          >
+            <img
+              alt="Ski Resort 22"
+              src="./images/resort2.webp"
+              title="Ski Resort 22"
+              width="100%"
+            />
+          </div>
+          <div
+            className="resort_list_item_text"
+          >
+            <table
+              className="infor_table"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    Name: 
+                    Ski Resort 22
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Location: 
+                    Location 2
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Number of ski runs: 
+                    12
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="resort_list_item_btn"
+        >
+          <button
+            data-testid="edit"
+            onClick={[Function]}
+          >
+            Edit
+          </button>
+          <button
+            data-testid="delete"
+            onClick={[Function]}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      data-testid="item-container"
+    >
+      <div
+        className="resortItem"
+      >
+        <div
+          className="resort_list_item_title"
+        >
+          <h3>
+            Ski Resort 333
+          </h3>
+        </div>
+        <hr />
+        <div
+          className="resort_list_item_content"
+        >
+          <div
+            className="resort_list_item_img_wrap"
+          >
+            <img
+              alt="Ski Resort 333"
+              src="./images/resort3.webp"
+              title="Ski Resort 333"
+              width="100%"
+            />
+          </div>
+          <div
+            className="resort_list_item_text"
+          >
+            <table
+              className="infor_table"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    Name: 
+                    Ski Resort 333
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Location: 
+                    Location 3
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Number of ski runs: 
+                    13
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="resort_list_item_btn"
+        >
+          <button
+            data-testid="edit"
+            onClick={[Function]}
+          >
+            Edit
+          </button>
+          <button
+            data-testid="delete"
+            onClick={[Function]}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      data-testid="item-container"
+    >
+      <div
+        className="resortItem"
+      >
+        <div
+          className="resort_list_item_title"
+        >
+          <h3>
+            Ski Resort 4
+          </h3>
+        </div>
+        <hr />
+        <div
+          className="resort_list_item_content"
+        >
+          <div
+            className="resort_list_item_img_wrap"
+          >
+            <img
+              alt="Ski Resort 4"
+              src="./images/resort4.webp"
+              title="Ski Resort 4"
+              width="100%"
+            />
+          </div>
+          <div
+            className="resort_list_item_text"
+          >
+            <table
+              className="infor_table"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    Name: 
+                    Ski Resort 4
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Location: 
+                    Location 4
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Number of ski runs: 
+                    14
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="resort_list_item_btn"
+        >
+          <button
+            data-testid="edit"
+            onClick={[Function]}
+          >
+            Edit
+          </button>
+          <button
+            data-testid="delete"
+            onClick={[Function]}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      data-testid="item-container"
+    >
+      <div
+        className="resortItem"
+      >
+        <div
+          className="resort_list_item_title"
+        >
+          <h3>
+            Ski Resort 5
+          </h3>
+        </div>
+        <hr />
+        <div
+          className="resort_list_item_content"
+        >
+          <div
+            className="resort_list_item_img_wrap"
+          >
+            <img
+              alt="Ski Resort 5"
+              src="./images/resort5.webp"
+              title="Ski Resort 5"
+              width="100%"
+            />
+          </div>
+          <div
+            className="resort_list_item_text"
+          >
+            <table
+              className="infor_table"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    Name: 
+                    Ski Resort 5
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Location: 
+                    Location 5
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Number of ski runs: 
+                    15
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="resort_list_item_btn"
+        >
+          <button
+            data-testid="edit"
+            onClick={[Function]}
+          >
+            Edit
+          </button>
+          <button
+            data-testid="delete"
+            onClick={[Function]}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>,
+  <aside
+    className="panel"
+  >
+    <div
+      className="panel_item_btn"
+    >
+      <button
+        onClick={[Function]}
+      >
+        Add New
+      </button>
+    </div>
+  </aside>,
+]
+`;
