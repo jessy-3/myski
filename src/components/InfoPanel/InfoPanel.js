@@ -1,25 +1,34 @@
 import styles from './InfoPanel.module.css';
 import React, { useState, useEffect } from 'react';
 import { WebcamCapture} from '../Webcam/Webcam';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setMode,
+  setResort,
+  selectMode,
+  selectResort,
+} from '../../features/resorts/resortsSlice';
 
 
 export function InfoPanel(props) {
-    // const { id, name, location, num_skiruns, imgsrc} = props?.resort;
-    const [name, setName]=useState(props?.resort ? props?.resort?.name : "");
-    const [location, setLocation]=useState(props?.resort ? props?.resort?.location : "");
-    const [num_skiruns, setNum_SkiRuns]=useState(props?.resort ? props?.resort?.num_skiruns : "1");
-    const [imgsrc,setImgsrc]=useState(props?.resort ? props?.resort?.imgsrc : "");
+  const currentMode = useSelector(selectMode);
+  const currentResort = useSelector(selectResort);
+  const dispatch = useDispatch();
+
+  // const { id, name, location, num_skiruns, imgsrc} = props?.resort;
+    const [name, setName]=useState(currentResort ? currentResort.name : "");
+    const [location, setLocation]=useState(currentResort ? currentResort.location : "");
+    const [num_skiruns, setNum_SkiRuns]=useState(currentResort ? currentResort.num_skiruns : "1");
+    const [imgsrc,setImgsrc]=useState(currentResort ? currentResort.imgsrc : "");
     const [errors,setErrors]=useState({});
 
     useEffect(() => {
-        if (props?.resort) {
-            setName(props.resort?.name);
-            setLocation(props.resort?.location);
-            setNum_SkiRuns(props.resort?.num_skiruns);
-            setImgsrc(props.resort?.imgsrc);
-            setErrors({});
-        }
-    }, [props?.resort])
+        setName(currentResort ? currentResort.name : "");
+        setLocation(currentResort ? currentResort.location : "");
+        setNum_SkiRuns(currentResort ? currentResort.num_skiruns : "1");
+        setImgsrc(currentResort ? currentResort.imgsrc : "");
+        setErrors({});
+    }, [currentResort, currentMode])
 
     function handleValidation() {
         let errors = {};
@@ -83,28 +92,28 @@ export function InfoPanel(props) {
           return;
         }
 
-        if (props.action === "Create") {
-            props.setresort({
+        if (currentMode === "Create") {
+          dispatch(setResort({
                 id: 0, 
                 name: name, 
                 location: location,
                 num_skiruns: num_skiruns,
                 imgsrc: imgsrc  
-            })
-            props.setaction("Created");
+            }));
+            dispatch(setMode('Created'));            
         }
-        else if (props.action === "Edit") {
-            props.setresort({
-                id: props.resort.id, 
+        else if (currentMode === "Edit") {
+          dispatch(setResort({
+                id: currentResort?.id, 
                 name: name, 
                 location: location, 
                 num_skiruns: num_skiruns,
                 imgsrc: imgsrc
-            })
-            props.setaction("Edited");
+            }));
+            dispatch(setMode('Edited'));
         }
         else {
-           console.log("Unknown action mode");
+           console.log("Unknown mode");
         return
         }
         event.preventDefault();
@@ -113,7 +122,7 @@ export function InfoPanel(props) {
     
 return (
     <aside className={styles.panel} >
-        { (props?.action === "Create" || props?.action === "Edit") ? 
+        { (currentMode === "Create" || currentMode === "Edit") ? 
         <div>
             <h3 className={styles.heading}>Resort info</h3>
             <div className={styles.panel_item_form}>
@@ -132,14 +141,16 @@ return (
 
                     <WebcamCapture imgsrc={imgsrc} setimgsrc={setImgsrc} />
                 
-                    <input className={styles.panel_item_form_input} type="submit" value={props.action === "Create" ? "Create" : "Update"} />
+                    <input className={styles.panel_item_form_input} type="submit" value={currentMode === "Create" ? "Create" : "Update"} />
                     <button className={styles.panel_item_form_input} onClick={() =>{
                         setName("");
                         setLocation("");
                         setNum_SkiRuns(1);
                         setImgsrc(""); 
                         setErrors({});
-                        props.setaction("Read")}}>
+                        dispatch(setMode('Read'));
+                        dispatch(setResort(""));
+                        }}>
                         Cancel
                     </button> 
                  
@@ -147,7 +158,10 @@ return (
             </div>
         </div> : 
         <div className={styles.panel_item_btn}>
-            <button onClick={() =>{props.setaction("Create")}}>
+            <button onClick={() =>{
+              dispatch(setMode('Create'));
+              dispatch(setResort(""));
+              }}>
                 Add New Resort
             </button> 
         </div> }
