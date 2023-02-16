@@ -50,10 +50,10 @@ function App() {
         dispatch(setMode('Read'));
         break;
       default:
-        console.log("useEffect: Read Mode")
+        // console.log("useEffect: Read Mode")
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentMode]);
 
   return(
     <>
