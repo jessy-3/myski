@@ -4,30 +4,34 @@ import { WebcamCapture} from '../Webcam/Webcam';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   setMode,
-  setResort,
   selectMode,
+  setResort,
   selectResort,
+  creatResort,
+  editResort
 } from '../../features/resorts/resortsSlice';
 
+export function InfoPanel() {
+  const initInfo = {
+    id: 0,
+    name: "",
+    location:"",
+    num_skiruns: "1",
+    imgsrc:""
+  };
 
-export function InfoPanel(props) {
-    const currentMode = useSelector(selectMode);
-    const currentResort = useSelector(selectResort);
-    const dispatch = useDispatch();
+  const [info, setInfo]=useState({});
+  const [image,setImage]=useState("");
+  const [errors,setErrors]=useState({});
+  
+  const currentResort = useSelector(selectResort);
+  const currentMode = useSelector(selectMode);
+  const dispatch = useDispatch();
 
-  // const { id, name, location, num_skiruns, imgsrc} = props?.resort;
-    const initInfo = {
-      id: 0,
-      name: "",
-      location:"",
-      num_skiruns: "1",
-      imgsrc:""
-    };
-    const [info, setInfo]=useState(currentResort ? currentResort : initInfo);
-    const [image,setImage]=useState();
-    const [errors,setErrors]=useState({});
+  console.log("InfoPanel info1", info);
 
     useEffect(() => {
+      console.log("InfoPanel useEffect1",info);
       setInfo({
         ...info,
         imgsrc: image
@@ -36,11 +40,11 @@ export function InfoPanel(props) {
     }, [image])
 
     useEffect(() => {
-        // setImgsrc(currentResort ? currentResort.imgsrc : "");
-        setInfo(currentResort ? currentResort : initInfo);
+        setInfo(currentResort);
+        console.log("InfoPanel useEffect3",currentResort );
         setErrors({});
     // eslint-disable-next-line
-    }, [currentResort, currentMode])
+    }, [currentResort])
 
     function handleValidation() {
         let errors = {};
@@ -97,32 +101,28 @@ export function InfoPanel(props) {
       }
         
     function handleSubmit(event) { 
-
         event.preventDefault();
 
         if (!handleValidation()) {
           return;
         }
-
-        if (currentMode === "Create") {
-          dispatch(setResort(info));
-          dispatch(setMode('Created'));            
+        switch(currentMode) {
+          case 'Create':
+            dispatch(creatResort(info));
+            dispatch(setResort(""));
+            break;
+          case 'Edit':
+            dispatch(editResort(info));
+            dispatch(setResort(""));
+            break;
+          default:
+            dispatch(setResort(""));
         }
-        else if (currentMode === "Edit") {
-          dispatch(setResort(info));
-          dispatch(setMode('Edited'));
-        }
-        else {
-           console.log("Unknown mode");
-        return
-        }
-        event.preventDefault();
     }
 
-    
 return (
     <aside className={styles.panel} >
-        { (currentMode === "Create" || currentMode === "Edit") ? 
+        { currentResort && info? 
         <div>
             <h3 className={styles.heading}>Resort info</h3>
             <div className={styles.panel_item_form}>
@@ -147,11 +147,10 @@ return (
 
                     <WebcamCapture imgsrc={info.imgsrc} setimgsrc={setImage} />
                 
-                    <input className={styles.panel_item_form_input} type="submit" value={currentMode === "Create" ? "Create" : "Update"} />
+                    <input className={styles.panel_item_form_input} type="submit" value={"Save"} />
                     <button className={styles.panel_item_form_input} onClick={() =>{
                         setInfo(initInfo);
                         setErrors({});
-                        dispatch(setMode('Read'));
                         dispatch(setResort(""));
                         }}>
                         Cancel
@@ -163,7 +162,8 @@ return (
         <div className={styles.panel_item_btn}>
             <button onClick={() =>{
               dispatch(setMode('Create'));
-              dispatch(setResort(""));
+              setInfo(initInfo);
+              dispatch(setResort(initInfo));
               }}>
                 Add New Resort
             </button> 

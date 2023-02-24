@@ -4,12 +4,19 @@ import renderer from "react-test-renderer";
 import {resorts} from '../Resorts';
 import {ResortListItem} from '../components/ResortList/ResortListItem';
 
+import store from '../app/store'
+import { Provider } from 'react-redux'
+
 const el = resorts[0];
 console.log(el);
 
 describe('ResortListItem component', () => {
     test('it renders ResortListItem with name and image', () => {
-    render(<ResortListItem item={el} />);
+    render(
+        <Provider store={store}>
+            <ResortListItem item={el} />
+        </Provider>
+        );
 
     expect(screen.getByText(el.name)).toBeInTheDocument();
     expect(screen.getByRole('img')).toBeInTheDocument();
@@ -17,7 +24,11 @@ describe('ResortListItem component', () => {
     });
 
     test('test if the item info is displayed', () => {
-        render(<ResortListItem item={el} />);
+        render(
+        <Provider store={store}>
+            <ResortListItem item={el} />
+        </Provider>
+        );
     
         expect(screen.getByText(/name/i)).toBeInTheDocument();
         expect(screen.getByText(/location/i)).toBeInTheDocument();
@@ -25,7 +36,11 @@ describe('ResortListItem component', () => {
         });
 
     test('test if the two buttons are displayed', () => {
-        render(<ResortListItem item={el} />);
+        render(
+            <Provider store={store}>
+                <ResortListItem item={el} />
+            </Provider>
+            );
     
         //expect(screen.getByText(el.name)).toBeInTheDocument();
         expect(screen.getAllByRole('button').length).toBe(2);
@@ -36,7 +51,9 @@ describe('ResortListItem component', () => {
         const handleEdit = jest.fn();
     
         const { getByTestId } = render(
-        <ResortListItem item={el} handleEdit={handleEdit} />
+            <Provider store={store}>
+                <ResortListItem item={el} handleEdit={handleEdit} />
+            </Provider>
         );
     
         fireEvent.click(getByTestId('edit'));
@@ -48,7 +65,9 @@ describe('ResortListItem component', () => {
         const handleDelete = jest.fn();
     
         const { getByTestId } = render(
-        <ResortListItem item={el} handleDelete={handleDelete} />
+            <Provider store={store}>
+                <ResortListItem item={el} handleDelete={handleDelete} />
+            </Provider>
         );
     
         fireEvent.click(getByTestId('delete'));
