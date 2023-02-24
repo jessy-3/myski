@@ -1,7 +1,14 @@
 import styles from './ResortListItem.module.css'
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  deleteResort,
+  setMode,
+  setResort,
+} from '../../features/resorts/resortsSlice';
 
 export const ResortListItem=(props)=>{
+  const dispatch = useDispatch();
   return (
     <div className={styles.resortItem}>
       <div className={styles.resort_list_item_title}>
@@ -35,8 +42,17 @@ export const ResortListItem=(props)=>{
         </div>
       </div>
         <div className={styles.resort_list_item_btn}>
-          <button onClick={()=>props.handleEdit(props.item)} data-testid="edit">Edit</button>
-          <button onClick={()=>props.handleDelete(props.item)} data-testid="delete">Delete</button>
+          <button  data-testid="edit" onClick={()=>{
+            dispatch(setMode('Edit'));
+            // console.log("Edit ", props.item);
+            dispatch(setResort(props.item));
+          }}>Edit</button>
+          <button  data-testid="delete" onClick={()=>{
+            // dispatch(setMode('Delete'));
+            // console.log("Delete ", props.item);
+            dispatch(setResort(""));
+            dispatch(deleteResort(props.item));
+          }}>Delete</button>
         </div>
     </div>
   )

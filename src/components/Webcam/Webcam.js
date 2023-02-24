@@ -26,7 +26,8 @@ export const WebcamCapture = (props) => {
         const imageSrc = webcamRef.current.getScreenshot();
         setImage(imageSrc);
         props.setimgsrc(imageSrc);
-        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
 
     return (
         <div className={styles.webcam_container}>
